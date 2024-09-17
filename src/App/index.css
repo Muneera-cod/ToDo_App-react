@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hoverborder{
+    border-left: 4px solid #fffbeb;
+    &:hover{
+    border-left:4px solid rgb(255, 182, 194);}
+}
+.center{
+    /* margin:0 auto; */
+    z-index: 10;
+    position: fixed;
+    left: 25%;
+    background: rgb(254 243 199);
+    
+
+}
