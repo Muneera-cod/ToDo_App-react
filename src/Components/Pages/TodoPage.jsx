@@ -21,10 +21,10 @@ function TodoPage() {
         <Sidebar sidebar={sidebar} handleSidebar={handleSidebar} setSidebar={setSidebar} setPopUp={setPopUp} popUp={popUp}/>
       </div>
     
-      <div className='flex'>
+      <div className='flex' >
        <div className={`w-1/6 sm:hidden md:block ${sidebar?'':'w-16 sm:hidden md:block '}`}></div>
         <div className='flex flex-col w-full '>
-          <div style={{position:'sticky',top:0}}>
+          <div style={{position:'sticky',top:0}} onClick={()=>{setPopUp(null)}}>
             <Todonav/>
           </div>
           <div className='flex flex-col'>

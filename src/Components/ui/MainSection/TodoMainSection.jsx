@@ -5,6 +5,7 @@ import { IconTrashFilled} from '@tabler/icons-react'
 import { ToastContainer,toast } from 'react-toastify'
 import { useState } from 'react'
 import Setting from '../Sidebar/Setting'
+import Profilee from '../Sidebar/Profilee'
 function TodoMainSection(props) {
               ///todo 
               const [todo,seTodo]=useState('')
@@ -14,14 +15,16 @@ function TodoMainSection(props) {
               const deleteTodo=(value)=>{
                     const afterdelete=todos.filter((element,i)=> i !== value)
                     setTodos(afterdelete)
-                    toast.success("Todo deleted successfully!", {
-                      position: "center",
-                      autoClose:4899,
+                    toast("Task deleted successfully!", {
+                      position: "top-right",
+                      autoClose:1000,
                       hideProgressBar: true,
                       closeOnClick: true,
                       pauseOnHover: true,
                       draggable: true,
-                      progress: undefined,
+                      // progress: undefined,
+                    
+                      className:'bg-amber-100 text-zinc-700  font-mono font-semibold border-2 border-pink-300'
                     });
               }
               const addTodo=()=>{
@@ -35,7 +38,17 @@ function TodoMainSection(props) {
                 const notCompleted=todos.filter((element,i)=> i !== index)
                 setTodos(notCompleted)
                 const completedTindex=todos.filter((element,i)=> i === index)
-                setcomTodos([...comtodos,completedTindex])     
+                setcomTodos([...comtodos,completedTindex])
+                toast.success("One task completed!", {
+                  position: "top-right",
+                  autoClose:1000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  // progress: undefined,
+                  className:'bg-amber-100 text-zinc-700  font-mono font-semibold border-2 border-pink-300'
+                });     
               }
             
             ///hover deletebutton
@@ -52,9 +65,9 @@ function TodoMainSection(props) {
 
   return (
     <div  className='bg-amber-50 min-h-screen w-full p-6 flex  md:gap-5 sm:p-4'>
-        {props.popUp === 1 && <Setting/>}
-        {props.popUp === 2 && <Profile/>}
-        <div className='md:basis-1/2 border-2 flex p-6 sm:basis-full'>
+        {props.popUp === 2 && <Setting/>}
+        {props.popUp === 1 && <Profilee/>}
+        <div className='md:basis-1/2 border-2 flex p-6 sm:basis-full' onClick={()=>{props.setPopUp(null)}}>
           <div className='flex flex-col py-5 lg:px-20 md:px-2 w-full min-h-full items-center gap-6'>
               <div className='flex items-center  gap-2  bg-amber-50 w-4/5 justify-center'>
                 <input value={todo} type='text' className='rounded-lg p-2 border-2 border-zinc-600 sm:w-3/4 md:w-2/3' onChange={(e)=>seTodo(e.target.value)} ref={refinput}></input>
@@ -79,7 +92,7 @@ function TodoMainSection(props) {
           </div><ToastContainer/>
           
         </div>
-        <div className='basis-1/2 border-2 p-10 flex flex-col gap-4'>
+        <div className='basis-1/2 border-2 p-10 flex flex-col gap-4' onClick={()=>{props.setPopUp(null)}}>
           <p className='text-xl text-zinc-700 font-mono font-semibold'>Your Completed tasks....</p>
                  {comtodos.length===0?<div className='w-full h-1/2  flex items-center justify-center text-zinc-500 font-mono'>{todos.length===0?'No tasks added':'No tasks completed'}</div>:null}
           {comtodos.map((items)=>{

@@ -21,7 +21,18 @@ function Sidebar(props) {
         <div className=' flex flex-col h-screen'>
           {sidebardata.map((items ,index)=>{
             return(
-            <div className={`p-4 text-zinc-500 hover:text-green-600 items-center flex hover:bg-gradient-to-r from-pink-200 to-amber-50 hoverborder gap-3 ${!props.sidebar?'':' pr-20 pl-8  py-4  text-zinc-500 hover:text-green-600 items-center flex hover:bg-gradient-to-r from-pink-200 to-amber-50 hoverborder gap-3'}`}  key={index} >{items.icon}
+            <div className={`p-4 text-zinc-500 hover:text-green-600 items-center flex hover:bg-gradient-to-r from-pink-200 to-amber-50 hoverborder gap-3 
+            ${!props.sidebar?'':' pr-20 pl-8  py-4  text-zinc-500 hover:text-green-600 items-center flex hover:bg-gradient-to-r from-pink-200 to-amber-50 hoverborder gap-3'}`} 
+             key={index}  onClick={()=>{ 
+                                      if (items.name === 'Profile') {
+                                        props.setPopUp(1);
+                                      } else if (items.name === 'Settings') {
+                                        props.setPopUp(2);
+                                      } else {
+                                        props.setPopUp(null);  // Handle other cases if needed
+                                      }
+                                    }}>{console.log(items.name)}
+                  {items.icon}
                    <div className={`block ${props.sidebar?'':'hidden'}`}>{items.name}</div>
             </div>)
           })}
