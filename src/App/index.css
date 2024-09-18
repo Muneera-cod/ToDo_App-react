@@ -16,3 +16,8 @@
     
 
 }
+.bodyBorder{
+    border-left:solid  1px #fef3c7;
+    /* box-shadow:  2px 2px 2px 2px green ; */
+    box-shadow: 5px 5px 8px rgb(255, 182, 194), 10px 10px 8px green, 15px 15px 8px  #fef3c7;
+}
