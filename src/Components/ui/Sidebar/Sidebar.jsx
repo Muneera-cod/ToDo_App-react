@@ -1,8 +1,9 @@
 import React from 'react'
-import { IconMenu2,IconLogout } from '@tabler/icons-react'
+import { IconLogout } from '@tabler/icons-react'
 import { sidebardata } from './DataSidebar'
 import profile from '../../../assets/user_profile.jpg'
-import { useState } from 'react'
+import { ToastContainer,toast } from 'react-toastify';
+import { supabase} from '../../../services/supabaseClient';
 function Sidebar(props) {
                         // const [sidebar,setSidebar]=useState(false)                         ///popUp
 //   const popUpsetting=()=>{
@@ -14,10 +15,32 @@ function Sidebar(props) {
                         // const handleSidebar=()=>{
                         //      setSidebar(!sidebar)
                         // }
+    const logOut=async()=>{
+      try{
+         let { error } = await supabase.auth.signOut()
+         if (error) {
+          toast.error(error.message,{
+            className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+          });
+        } else {
+          toast.success('Log Out Successfull!',{
+            className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+          });
+        }
 
+        }
+        catch(error)
+        {
+          console.error('Error during logOut:', error.message);
+          toast.error('LogOut failed.',{
+            className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+          });
+        }
+      }
 
   return (
     <div className='h-screen bg-sidebarClr w-fit flex flex-col'>
+      <ToastContainer/>
         {/* <div className='p-4 text-zinc-500'><IconMenu2 onClick={props.handleSidebar}/></div> */}
         <div className=' flex flex-col h-screen'>
         
@@ -45,7 +68,7 @@ function Sidebar(props) {
             </div>)
           })}
           <div  className='h-full items-end justify-center sm:gap-0 lg:gap-4 sm:py-0 lg:py-6 sm:px-0 lg:px-4  flex  text-mainTextclr'>
-           <p className='text-mainTextclr font-mono sm:hidden lg:block'>Log out</p> <IconLogout className='hover:text-mainBgclr'/></div>
+           <p className='text-mainTextclr font-mono sm:hidden lg:block'>Log out</p> <IconLogout className='hover:text-mainBgclr' onClick={logOut}/></div>
             {console.log(props.popUp)}
         </div>
         

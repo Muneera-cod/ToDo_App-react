@@ -52,33 +52,34 @@ function Login() {
     onSubmit: async(values) => {
       setLoading(true);
       try {
-        const { data, error } = await supabase.auth.signInWithOtp({
-          email: values.userName,
-          options: {
-            shouldCreateUser: false,
-            emailRedirectTo: 'http://localhost:5173/todopage',
+            const { data, error } = await supabase.auth.signInWithOtp({
+              email: values.userName,
+              options: {
+                shouldCreateUser: false,
+                emailRedirectTo: 'http://localhost:5173/todopage',
+                
+                  }
+                  })
             
-          }
-          
-        })
-        
-        
-        if (error) {
-          toast.error(error.message,{
-            className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
-          });
-        } else {
-          toast.success('Check your email for the login link!',{
-            className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
-          });
-        }
-      } catch (error) {
-        console.error('Error during login:', error.message);
-        toast.error('Login failed.',{
-          className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
-        });
-      } finally {
-        setLoading(false);
+            
+            if (error) {
+              toast.error(error.message,{
+                className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+              });
+            } else {
+              toast.success('Check your email for the login link!',{
+                className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+              });
+            }
+      } 
+      catch (error) {
+            console.error('Error during login:', error.message);
+            toast.error('Login failed.',{
+              className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+            });
+      } 
+      finally {
+            setLoading(false);
       }
       // alert(JSON.stringify(values, null, 2));
       // alert("Login successfull");
