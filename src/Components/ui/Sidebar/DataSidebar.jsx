@@ -1,4 +1,4 @@
-import {IconUser,IconCopyCheckFilled,IconSettingsFilled} from '@tabler/icons-react'
+import {IconUser,IconCopyCheckFilled,IconSettingsFilled,IconHelpHexagonFilled} from '@tabler/icons-react'
 export const sidebardata=[
     {
         icon:<IconUser/>,
@@ -11,5 +11,9 @@ export const sidebardata=[
     {
         icon:<IconSettingsFilled/>,
         name:'Settings'
+    },
+    {
+        icon:<IconHelpHexagonFilled/>,
+        name:'Help'
     }
 ]

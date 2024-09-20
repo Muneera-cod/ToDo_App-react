@@ -6,15 +6,14 @@ import TodoPage from "../../Components/Pages/TodoPage";
 export const router=createBrowserRouter([
     {
         path:'/',
+        element:<SignUp/>
+    },
+    {
+        path:'/login',
         element:<Login/>
     },
     {
-        path:'signup',
-        element:<SignUp/>
-
-    },
-    {
-        path:'todopage',
+        path:'/todopage',
         element:<TodoPage/>
 
     }

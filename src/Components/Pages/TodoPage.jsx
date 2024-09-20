@@ -5,7 +5,7 @@ import TodoMainSection from '../ui/MainSection/TodoMainSection'
 import Sidebar from '../ui/Sidebar/Sidebar'
 import { useState } from 'react'
 function TodoPage() {
-  const [sidebar,setSidebar]=useState(false)
+  const [sidebar,setSidebar]=useState(true)
   const handleSidebar=()=>{
        setSidebar(!sidebar)
        console.log(sidebar)
@@ -16,15 +16,15 @@ function TodoPage() {
   
   
   return (
-    <div className='min-h-screen w-full bg-amber-50 '>
-      <div style={{position:'fixed',zIndex:10,boxShadow: '2px 2px 10px 3px gray'}} className='sm:hidden md:block' > 
-        <Sidebar sidebar={sidebar} handleSidebar={handleSidebar} setSidebar={setSidebar} setPopUp={setPopUp} popUp={popUp}/>
+    <div className='min-h-screen w-full bg-zinc-50 flex sm:flex-col-reverse lg:flex-row '>
+      <div style={{position:'fixed',zIndex:10}} className='min-h-screen w-fit' > 
+        <Sidebar    setPopUp={setPopUp} popUp={popUp}/>
       </div>
     
-      <div className='flex' >
-       <div className={`w-1/6 sm:hidden md:block ${sidebar?'':'w-16 sm:hidden md:block '}`}></div>
+      <div className='flex bg-mainBgclr w-screen' >
+       <div className='w-[360px] sm:hidden lg:block'></div>
         <div className='flex flex-col w-full '>
-          <div style={{position:'sticky',top:0}} onClick={()=>{setPopUp(null)}}>
+          <div style={{position:'sticky',top:0}} onClick={()=>{setPopUp(null)}} className='h-20 bg-lightBgclr'>
             <Todonav/>
           </div>
           <div className='flex flex-col'>

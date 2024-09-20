@@ -30,12 +30,10 @@ function TodoMainSection(props) {
                                         draggable: true,
                                         // progress: undefined,
                                       
-                                        className:'bg-amber-100 text-zinc-700  font-mono font-semibold border-2 border-pink-300'
+                                        className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
                                       });
               }   
-
-           
-            
+ 
             ///hover deletebutton
               const[hover,setHover]=useState(null)
 
@@ -60,15 +58,15 @@ function TodoMainSection(props) {
      
 
   return (
-    <div  className='bg-amber-50 min-h-screen w-full p-6 flex  md:gap-5 sm:p-4'>
+    <div  className=' min-h-screen w-full sm:p-14 lg:p-6 flex lg:flex-row sm:flex-col md:gap-5 sm:p-4 '>
         {props.popUp === 2 && <Setting/>}
         {props.popUp === 1 && <Profilee/>}
-        <div className='md:basis-1/2  flex p-6 sm:basis-full bodyBorder' onClick={()=>{props.setPopUp(null)}}>
+        <div className='md:basis-1/2  flex p-6 sm:basis-full  border-2 border-markclr ' onClick={()=>{props.setPopUp(null)}}>
          <TodoList todos={todos} setTodos={setTodos}  fetchdata={fetchdata} hover={hover} setHover={setHover} seTodo={seTodo} todo={todo}  deleteTodo={deleteTodo} />
          <ToastContainer/>
           
         </div>
-        <div className='basis-1/2 bodyBorder p-10 flex flex-col gap-4' onClick={()=>{props.setPopUp(null)}}>
+        <div className='basis-1/2  border-2 border-markclr p-10 flex flex-col gap-4' onClick={()=>{props.setPopUp(null)}}>
          <TodoCompleted  todos={todos} fetchdata={fetchdata}/>
         </div>
     </div>

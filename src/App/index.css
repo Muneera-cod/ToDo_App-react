@@ -21,3 +21,40 @@
     /* box-shadow:  2px 2px 2px 2px green ; */
     box-shadow: 5px 5px 8px rgb(255, 182, 194), 5px 5px 8px green, 12px 15px 8px  #b2a571;
 }
+.custom-file-upload {
+    display: inline-block;
+    padding:  12px;
+    cursor: pointer;
+    background-color: #1f1e1b;
+    color: #F0E3CA;
+    border:solid 2px #FF8303;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+input::placeholder{
+    color: #D8CCB4;
+}
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track of the scrollbar */
+::-webkit-scrollbar-track {
+    background: #1b1a17;
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+    background: #1b1a17;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+

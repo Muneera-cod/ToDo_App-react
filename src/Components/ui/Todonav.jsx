@@ -19,15 +19,15 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className='flex  justify-between px-6 pt-6 pb-4 items-center bg-amber-50'>
-        <div className='flex gap-5'>
-            <img src={profilepic} className='rounded-full lg:size-20 md:size-8'></img>
+    <div className='flex  sm:justify-between lg:justify-end px-6 pt-6 pb-4 items-center  bg-lightBgclr'>
+        <div className=' gap-5 sm:flex lg:hidden'>
+          <><img src={profilepic} className='rounded-full size-8'></img>
             <div className='flex flex-col justify-end pb-2'>
-                <p className='lg:text-2xl md:text-sm font-bold text-zinc-700 font-mono'>Hi, username</p>
-                <p className='lg:text-sm md:text-xs text-zinc-500'>Your todo list is here</p>
-            </div>
+                <p className='text-sm font-bold text-mainTextclr font-mono'>Hi, username</p>
+                <p className='text-xs  text-mainTextclr'>Your todo list is here</p>
+            </div></>
         </div>
-        <div className='text-zinc-600 font-bold'><p className='lg:text-2xl md:text-sm font-mono'>{currDate}</p></div>
+        <div className='text-mainTextclr font-bold'><p className='lg:text-2xl sm:text-sm font-mono'>{currDate}</p></div>
     </div>
   )
 }
