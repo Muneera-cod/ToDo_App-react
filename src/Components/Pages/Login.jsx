@@ -20,7 +20,7 @@ const validate = values => {
   if (!values.password) {
     errors.password = 'Please enter your password';
     // toast.error("Enter your password")
-  } else if (values.password.length < 6) {
+  } else if (values.password.length < 5) {
     errors.password= 'Minimum five characters is required';
     // toast.error("Password must be minimum 5 characters")
   }
@@ -64,7 +64,9 @@ function Login() {
         
         
         if (error) {
-          toast.error(error.message);
+          toast.error(error.message,{
+            className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+          });
         } else {
           toast.success('Check your email for the login link!',{
             className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
@@ -72,7 +74,9 @@ function Login() {
         }
       } catch (error) {
         console.error('Error during login:', error.message);
-        toast.error('Login failed.');
+        toast.error('Login failed.',{
+          className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+        });
       } finally {
         setLoading(false);
       }
