@@ -78,6 +78,11 @@ function TodoMainSection(props) {
                     fetchdata()
                     // fetchuserdata()
               },[])
+              useEffect(()=>{
+                   
+                fetchdata()
+                // fetchuserdata()
+          },[deleteTodo])
   return (
     <div  className=' min-h-screen w-full sm:px-20 lg:p-6 flex lg:flex-row sm:flex-col md:gap-5 sm:p-4 '>
         {props.popUp === 2 && <Setting curSession={props.curSession}/>}
