@@ -46,12 +46,11 @@ function SignUp() {
     validate,
     onSubmit: async(values) => {
     try{  
-            const { data, error } = await supabase.auth.signInWithOtp({
+      let { data, error } = await supabase.auth.signUp({
               email: values.userName,
-              options: {
-                
-                emailRedirectTo: 'http://localhost:5173/login',
-                
+              password:values.password,
+              options:{
+                emailRedirectTo:'http://localhost:5173/login'
               }
             })
             if (error) {

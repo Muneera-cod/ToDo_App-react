@@ -6,7 +6,7 @@ import { ToastContainer,toast } from 'react-toastify';
 import { supabase} from '../../services/supabaseClient';
 import 'react-toastify/dist/ReactToastify.css';
 const validate = values => {
-  
+ 
   const errors = {};
   if (!values.userName) {
     errors.userName= 'Please enter your email';
@@ -29,20 +29,11 @@ const validate = values => {
 
   return errors;
 };
-// const getURL = () => {
-//   let url =
-//     process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
-//     process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel.
-//     'http://localhost:3000/'
-//   // Make sure to include `https://` when not localhost.
-//    url = url.startsWith('http') ? url : `https://${url}`
-//   // Make sure to include a trailing `/`.
-//    url = url.endsWith('/') ? url : `${url}/`
-//   return url
-// }
+
 function Login() {
+   const navigate=useNavigate()
   const [loading, setLoading] = useState(false);
-  // const navigate=useNavigate()
+
   const formik = useFormik({
     initialValues: {
       userName: '',
@@ -52,24 +43,29 @@ function Login() {
     onSubmit: async(values) => {
       setLoading(true);
       try {
-            const { data, error } = await supabase.auth.signInWithOtp({
+      
+let { data:{session}, error } = await supabase.auth.signInWithPassword({
+
+
               email: values.userName,
-              options: {
-                shouldCreateUser: false,
-                emailRedirectTo: 'http://localhost:5173/todopage',
-                
-                  }
+              password:values.password,
+              options:{
+                emailRedirectTo:'http://localhost:5173/todopage'
+              }
                   })
             
             
             if (error) {
+              
               toast.error(error.message,{
                 className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
               });
             } else {
+              console.log(session.user.id)
               toast.success('Check your email for the login link!',{
                 className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
               });
+              navigate('/todopage')
             }
       } 
       catch (error) {

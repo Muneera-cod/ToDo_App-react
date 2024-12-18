@@ -6,10 +6,38 @@ import { toast } from 'react-toastify'
 function TodoList(props) {
 
     const refinput=useRef(null)
+    
     const insertdata = async () => {
+      if (!props.todo.trim()) {
+        toast.error('Task cannot be empty!', {
+          position: 'top-right',
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          className: 'bg-lightBgclr text-mainTextclr font-mono font-semibold border-2 border-markclr',
+        });
+        return;
+      }
+  
+      const { data:{user}, error: userError } = await supabase.auth.getUser();
+      console.log(user)
+      if (userError || !user) {
+        toast.error('You need to be logged in to add tasks', {
+          position: 'top-right',
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          className: 'bg-lightBgclr text-mainTextclr font-mono font-semibold border-2 border-markclr',
+        });
+        return;
+      }
         const { data, error } = await supabase
           .from('todos')
-          .insert([{ text: props.todo ,is_complete:false}])
+          .insert([{ text: props.todo ,is_complete:false,user_id: user.id}])
           .select();
         
         if (error) {

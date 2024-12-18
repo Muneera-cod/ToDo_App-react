@@ -9,11 +9,12 @@ import Profilee from '../Sidebar/Profilee'
 import { supabase } from '../../../services/supabaseClient'
 import TodoCompleted from './TodoCompleted'
 import TodoList from './TodoList'
+import { useNavigate } from 'react-router-dom'
 function TodoMainSection(props) {
-              ///todo 
+            const navigate=useNavigate()
               const [todo,seTodo]=useState('')
               const [todos,setTodos]=useState([])
-              const [comtodos,setcomTodos]=useState([])
+            
               console.log(todos)
 
               const deleteTodo=async(index)=>{
@@ -34,33 +35,53 @@ function TodoMainSection(props) {
                                       });
               }   
  
-            ///hover deletebutton
+         
               const[hover,setHover]=useState(null)
 
               
-    ///fecth data 
-    
-        const fetchdata=async()=>{
-          let { data: tasks, error } = await supabase
+   
+
+    const fetchdata = async () => {
+      // Get the session
+      const { data: {session}, error: sessionError } = await supabase.auth.getSession();
+      
+     console.log(session)
+      if (sessionError) {
+        console.error('Error getting session:', sessionError);
+        return;
+      }
+    console.log('dcxc',)
+      if (session && session.user.id) {
+        const userId = session.user.id; // Get the user ID from session
+    // Get the user ID of the logged-in user
+         
+        // Query the todos where the user_id matches the logged-in user's ID
+        const { data, error } = await supabase
           .from('todos')
           .select('*')
-          if (error) {
-            console.error("Error fetching todos:", error);
-          } else {
-            console.log("Tasks:", tasks);
-            setTodos(tasks)
-          }      }
+          .eq('user_id', userId); // Filter todos by user_id
+          console.log('No error')
+  
+        if (error) {
+          console.error('Error fetching todos:', error);
+        } else {
+          setTodos(data); // Set the fetched todos in the state
+        }
+      } else {
+        console.error('No active session, user not logged in');
+        navigate('/login')
+      }
+    };
 
-              useEffect(()=>{
+  useEffect(()=>{
                    
                     fetchdata()
+                    // fetchuserdata()
               },[])
-     
-
   return (
-    <div  className=' min-h-screen w-full sm:p-14 lg:p-6 flex lg:flex-row sm:flex-col md:gap-5 sm:p-4 '>
-        {props.popUp === 2 && <Setting/>}
-        {props.popUp === 1 && <Profilee/>}
+    <div  className=' min-h-screen w-full sm:px-20 lg:p-6 flex lg:flex-row sm:flex-col md:gap-5 sm:p-4 '>
+        {props.popUp === 2 && <Setting curSession={props.curSession}/>}
+        {props.popUp === 1 && <Profilee curSession={props.curSession}/>}
         <div className='md:basis-1/2  flex p-6 sm:basis-full  border-2 border-markclr ' onClick={()=>{props.setPopUp(null)}}>
          <TodoList todos={todos} setTodos={setTodos}  fetchdata={fetchdata} hover={hover} setHover={setHover} seTodo={seTodo} todo={todo}  deleteTodo={deleteTodo} />
          <ToastContainer/>

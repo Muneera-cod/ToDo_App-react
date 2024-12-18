@@ -2,7 +2,7 @@ import React from 'react'
 import { IconSettingsFilled} from '@tabler/icons-react'
 import profilepic from '../../assets/user_profile.jpg'
 import { useState,useEffect } from 'react'
-function Todonav() {
+function Todonav({curSession}) {
 const [currDate,setCurrDate]=useState('')
 
 useEffect(() => {
@@ -23,7 +23,7 @@ useEffect(() => {
         <div className=' gap-5 sm:flex lg:hidden'>
           <><img src={profilepic} className='rounded-full size-8'></img>
             <div className='flex flex-col justify-end pb-2'>
-                <p className='text-sm font-bold text-mainTextclr font-mono'>Hi, username</p>
+                <p className='text-sm font-bold text-mainTextclr font-mono'>Hi, {curSession?.user.email?curSession.user.email.split('@')[0]:'username'}</p>
                 <p className='text-xs  text-mainTextclr'>Your todo list is here</p>
             </div></>
         </div>
