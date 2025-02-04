@@ -1,33 +1,27 @@
 import React from 'react'
-import { IconSettingsFilled} from '@tabler/icons-react'
 import profilepic from '../../assets/user_profile.jpg'
 import { useState,useEffect } from 'react'
-function Todonav({curSession}) {
-const [currDate,setCurrDate]=useState('')
+import { IconLogout,IconMoonFilled,IconSun } from '@tabler/icons-react'
+import { toggleMode } from '../../redux/reducers/Theme/ThemeSlice'
+import { useSelector,useDispatch } from 'react-redux'
+import { useGetUserQuery } from '../../redux/reducers/Api/authApi'
+function Todonav() {
+const dispatch = useDispatch()
+const isDarkmode = useSelector((state)=>state.theme.isDarkmode)
+const { data:user , isError:userError} = useGetUserQuery();
 
-useEffect(() => {
-  const today = new Date();
-  
-  // Formatting the date: '02, Tuesday, 2024'
-  const formattedDate = today.toLocaleDateString('en-US', {
-    day: '2-digit',        // '02'
-    weekday: 'long',       // 'Tuesday'
-    year: 'numeric'        // '2024'
-  });
-
-  setCurrDate(formattedDate);
-}, []);
 
   return (
-    <div className='flex  sm:justify-between lg:justify-end px-6 pt-6 pb-4 items-center  bg-lightBgclr'>
-        <div className=' gap-5 sm:flex lg:hidden'>
-          <><img src={profilepic} className='rounded-full size-8'></img>
+    <div className='flex text-lightmodemainTextclr w-full dark:text-darkmainTextclr top-0  fixed h-20 dark:bg-lightBgclr bg-lightModelightBg sm:z-10 lg:z-10 sm:justify-between lg:justify-end sm:px-4 md:px-6 pt-6 pb-4 items-center '>
+        <div className=' gap-4 sm:flex lg:hidden'>
+          <>             {user?.user_metadata.photoURL ? <img src={profile} className='rounded-full size-8'></img> : <div className='flex  items-center uppercase justify-center text-md  rounded-full bg-amber-400 size-8'><p className='font-[700]'>{user?.user_metadata.email.split('')[0]}</p></div>}
             <div className='flex flex-col justify-end pb-2'>
-                <p className='text-sm font-bold text-mainTextclr font-mono'>Hi, {curSession?.user.email?curSession.user.email.split('@')[0]:'username'}</p>
-                <p className='text-xs  text-mainTextclr'>Your todo list is here</p>
+                <p className='text-sm font-bold  font-mono'>Hi, {user?.user_metadata.email ? user.user_metadata.email.split('@')[0]:'username'}</p>
+                <p className='text-xs '>Your todo list is here</p>
             </div></>
         </div>
-        <div className='text-mainTextclr font-bold'><p className='lg:text-2xl sm:text-sm font-mono'>{currDate}</p></div>
+        { isDarkmode ?<IconMoonFilled className=' hover:text- text-lightmodemainTextclr dark:text-darkmainTextclr mx-2' onClick={()=>dispatch(toggleMode())}/>:<IconSun className=' hover:text- text-lightmodemainTextclr dark:text-darkmainTextclr mx-2' onClick={()=>dispatch(toggleMode())}/>}
+
     </div>
   )
 }

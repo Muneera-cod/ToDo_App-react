@@ -6,22 +6,29 @@ export default {
   ],
   theme: {
     screens: {
-      sm: '480px',
+      sm: '300px',
       md: '768px',
       lg: '976px',
       xl: '1440px',
     },
     extend: {
       colors: {
+        lightModelightBg: '#e7e0da',
+        lightModeMainBg:'white',
          mainBgclr: '#1b1a17',
          lightBgclr: '#1f1e1b',
          markHoverclr:'#A3570',
          markclr:'#FF8303',
-         mainTextclr:'#F0E3CA',
-         sidebarClr:'#37342B'
+         darkmainTextclr:'#F0E3CA',
+         lightmodemainTextclr:'#543012',
+         darksidebarClr:'#37342B',
+         sidebarClr:'rgb(164, 139, 125)',
+         darkTextClr:'',
+         textClr:'#b2998a'
       },
     },
   },
   plugins: [],
+  darkMode: 'class',
 }
 

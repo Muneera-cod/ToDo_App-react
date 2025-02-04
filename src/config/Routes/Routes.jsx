@@ -1,20 +1,33 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login from "../../Components/Pages/Login";
-import SignUp from "../../Components/Pages/SignUp";
-import TodoPage from "../../Components/Pages/TodoPage";
 
-export const router=createBrowserRouter([
+import TodoCompleted from "../../Components/ui/MainSection/TodoCompleted";
+import LoadingPage from "../../Components/Pages/LoadingPage";
+
+import { lazy,Suspense } from "react";
+import ProfilePage from "../../Components/ui/ProfilePAge/ProfilePage";
+import Setting from "../../Components/ui/SettingPage/Setting";
+const TodoPage=lazy(()=>import('../../Components/Pages/TodoPage'));
+
+export const mainrouter=createBrowserRouter([
+   
+   
     {
         path:'/',
-        element:<SignUp/>
-    },
-    {
-        path:'/login',
-        element:<Login/>
-    },
-    {
-        path:'/todopage',
-        element:<TodoPage/>
+        element:<Suspense fallback={<LoadingPage/>}><TodoPage/></Suspense>,
+        children:[
+            {
+                path:'completedTasks',
+                element:<TodoCompleted/>
+            },
+            {
+                path:'profile',
+                element:<ProfilePage/>
+            },
+            {
+                path:'settings',
+                element:<Setting/>
+            }
+        ]
 
     }
 ])
