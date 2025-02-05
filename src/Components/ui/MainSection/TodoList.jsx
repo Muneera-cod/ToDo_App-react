@@ -74,6 +74,7 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
               <div className='flex flex-col w-full min-h-2/4  gap-1 gap-2' >
               { activeTasks?.map((items)=>{
                 return(
+                  <>
                  <div className='w-full min-h-2/4 bg-opacity-60  md:p-6 sm:p-4 dark:bg-lightBgclr bg-lightModelightBg border-2 dark:border-markclr border-lightModelightBg rounded-md font-mono items-center  flex gap-5' onMouseEnter={()=>{handleMouseEnter(items.id)}} onMouseLeave={()=>{handleMouseLeave(false)}} key={items.id}>
                   <div className='flex-none flex items-center justify-center   w-6 h-6 rounded hover:bg-mainTextclr border-2 dark:border-markclr border-lightmodemainTextclr'
                    onClick={()=>{updatestatus({...items,is_complete:true})}}
@@ -83,6 +84,9 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
                     onClick={()=>{deleteTodo(items.id)}}
                    />}
                  </div>
+                 {hover!==items.id && <p className='ml-auto flex-none opacity-50 sm:text-xs md:text-sm text-mainTextclr'>{items.created_at.split('T')[0]}</p>}
+
+                 </>
                 )})}
                 
                  </div>

@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import { SupabaseClient } from '@supabase/supabase-js';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { supabase } from '../../services/supabaseClient';
 import { toast, ToastContainer } from 'react-toastify';
@@ -9,11 +8,18 @@ import { useDispatch } from 'react-redux';
 function ForgetPwdForm() {
     const [email, setEmail] = useState('');
       const [message, setMessage] = useState('');
+      const [isLoading,setIsLoading] = useState(false)
      const navigate = useNavigate()
    
      const dispatch=useDispatch()
       const handleResetPassword = async (e) => {
         e.preventDefault();
+        if (!email) {
+          setMessage('Please enter a valid email address.');
+          toast.error('Please enter a valid email address.');
+          return;
+        }
+        setIsLoading(true)
         const { data, error } = await supabase.auth.resetPasswordForEmail(email);
         if (error) {
           setMessage(`Error: ${error.message}`);
@@ -22,6 +28,7 @@ function ForgetPwdForm() {
           setMessage('Password reset email sent successfully!');
           toast.success('Password reset email sent successfully!');
         }
+        setIsLoading(false)
       };
   return (
     
@@ -40,7 +47,7 @@ function ForgetPwdForm() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <button type="submit" className=' dark:hover:border-opacity-60  hover:bg-opacity-60 border-[0.5px] dark:border-markclr p-3 border-lightModelightBg dark:bg-lightBgclr bg-lightModelightBg  px-6 py-2 rounded-md font-bold'>Reset Password</button>
+            <button type="submit" className=' dark:hover:border-opacity-60  hover:bg-opacity-60 border-[0.5px] dark:border-markclr p-3 border-lightModelightBg dark:bg-lightBgclr bg-lightModelightBg  px-6 py-2 rounded-md font-bold'>{isLoading ? 'Sending' : 'Reset Password'}</button>
           </form>
           {message && <p>{message}</p>}
         </div>
