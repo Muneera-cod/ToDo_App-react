@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { IconArrowLeft } from '@tabler/icons-react';
 import { useFormik } from 'formik'
 import { ToastContainer,toast } from 'react-toastify';
 import { supabase} from '../../services/supabaseClient';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
-import Todonav from '../ui/Todonav';
 import { useGetUserQuery } from '../../redux/reducers/Api/authApi';
 import { useSelector,useDispatch } from 'react-redux';
 import { changeView } from '../../redux/reducers/View/ViewSlice';
-import LoadingPage from './LoadingPage';
 import { useSignInMutation } from '../../redux/reducers/Api/authApi';
 const validate = values => {
  
@@ -71,17 +70,17 @@ let { data:{session}, error } = await supabase.auth.signInWithPassword({
                     throw new Error(error.message);
                   }
                 
-             
+             navigate('/')
               console.log(';d;l',session.user.id)
-              // toast.success('Login successful',{
-              //   className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold hover:bg-mainTextclr  dark:border-markclr p-3 border-lightModelightBg '
-              // });
+              toast.success('Login successful',{
+                className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold hover:bg-mainTextclr   dark:border-markclr p-3 border-lightModelightBg'
+              });
             
       } 
       catch (error) {
          console.log(error.message)
             toast.error('Login failed.',{
-              className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold hover:bg-mainTextclr  dark:border-markclr p-3 border-lightModelightBg '
+              className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold  dark:border-markclr p-3 border-lightModelightBg '
             });
            
       } 
@@ -97,10 +96,10 @@ let { data:{session}, error } = await supabase.auth.signInWithPassword({
  
   const location=useLocation()
   useEffect(()=>{
-    if(location.pathname==='/'){
+    if(location.pathname==='/login'){
        dispatch(changeView(0))
     }
-    else if(location.pathname==='/Forgotpassword'){
+    else if(location.pathname==='/forgot-password' || location.pathname==='/reset-password'){
          dispatch(changeView(1))
     }
   },[location.pathname])
@@ -109,9 +108,9 @@ let { data:{session}, error } = await supabase.auth.signInWithPassword({
 
   return (
     <>
-    {/* <Todonav/> */}
+    <IconArrowLeft onClick={()=>{navigate(-1);dispatch(changeView(0))}} className='absolute top-6 left-4 text-lightmodemainTextclr dark:text-darkmainTextclr '/>
 
-<div className='flex w-full min-h-screen dark:bg-mainBgclr gap-4 bg-lightModeMainBg  text-lightmodemainTextclr dark:text-darkmainTextclr items-center justify-center flex flex-col'>
+<section className='flex w-full min-h-screen dark:bg-mainBgclr gap-4 bg-lightModeMainBg  text-lightmodemainTextclr dark:text-darkmainTextclr items-center justify-center flex flex-col'>
       
 { curview === 0 && <><p className='font-bold text-mainTextclr text-2xl font-sans'>Login here....</p>
   <p ref={errorref} className={`${errorMsg ? 'text-red-800 bg-red-100 w-[30rem]  flex items-center justify-center mt-6 px-6 py-3 rounded-md':'hidden'}`} aria-live="assertive">{  errorMsg }</p>
@@ -140,13 +139,13 @@ let { data:{session}, error } = await supabase.auth.signInWithPassword({
           
         </form>
         <div className='flex  w-full justify-between items-center font-[700] gap-4  text-xs  '>
-           <Link to={'Forgotpassword'}><p style={{fontStyle:'italic',display:'inline'}} className='hover:opacity-60 dark:hover:text-[#FFF5E3]' onClick={()=>dispatch(changeView(1))}>Forgot password..?</p></Link>
+           <Link to={'forgot-password'}><p style={{fontStyle:'italic',display:'inline'}} className='hover:opacity-60 dark:hover:text-[#FFF5E3]' onClick={()=>dispatch(changeView(1))}>Forgot password..?</p></Link>
            <p><Link to={'/signUP'}><span style={{fontStyle:'italic',display:'inline'}} className='hover:opacity-60 dark:hover:text-[#FFF5E3]'>SignUp</span></Link></p>
 
         </div>
       </div></>}
       {curview === 1 && <Outlet/>}
-    </div>
+    </section>
    
     </>
   )

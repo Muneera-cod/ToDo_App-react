@@ -9,7 +9,7 @@ export const sidebardata=[
     },
     {   id:2,
         icon:<IconCopyCheckFilled/>,
-        name:'Completed tasks',
+        name:'Completed',
         link:'completedTasks'
     },
     {

@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { changeView } from '../../redux/reducers/View/ViewSlice';
 import { useDispatch } from 'react-redux';
 function ForgetPwdForm() {
+   const redirectUrl = `${window.location.origin}/reset-password`
+
     const [email, setEmail] = useState('');
       const [message, setMessage] = useState('');
       const [isLoading,setIsLoading] = useState(false)
@@ -20,7 +22,7 @@ function ForgetPwdForm() {
           return;
         }
         setIsLoading(true)
-        const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+        const { data, error } = await supabase.auth.resetPasswordForEmail(email,{redirectTo: redirectUrl});
         if (error) {
           setMessage(`Error: ${error.message}`);
           toast.error(error.message);
@@ -47,7 +49,7 @@ function ForgetPwdForm() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <button type="submit" className=' dark:hover:border-opacity-60  hover:bg-opacity-60 border-[0.5px] dark:border-markclr p-3 border-lightModelightBg dark:bg-lightBgclr bg-lightModelightBg  px-6 py-2 rounded-md font-bold'>{isLoading ? 'Sending' : 'Reset Password'}</button>
+            <button type="submit" disabled={isLoading} className=' dark:hover:border-opacity-60  hover:bg-opacity-60 border-[0.5px] dark:border-markclr p-3 border-lightModelightBg dark:bg-lightBgclr bg-lightModelightBg  px-6 py-2 rounded-md font-bold'>{isLoading ? 'Sending' : 'Send to Email'}</button>
           </form>
           {message && <p>{message}</p>}
         </div>

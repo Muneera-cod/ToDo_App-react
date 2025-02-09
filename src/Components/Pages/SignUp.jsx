@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useFormik } from 'formik';
 import { useNavigate,Link} from 'react-router-dom';
 import { supabase} from '../../services/supabaseClient';
 import Todonav from '../ui/Todonav';
+import { IconArrowLeft } from '@tabler/icons-react';
+import { useDispatch } from 'react-redux';
+import { rule } from 'postcss';
 function SignUp() {
+    const redirectUrl = `${window.location.origin}`
+  const [ isLoading,setIsLoading] = useState(false)
   const navigate=useNavigate()
+  const dispatch = useDispatch()
   const validate = values => {
     const errors = {};
     if (!values.firstName) {
@@ -48,6 +54,7 @@ function SignUp() {
     validate,
     onSubmit: async(values) => {
     try{  
+      setIsLoading(true)
       let { data, error } = await supabase.auth.signUp({
               email: values.userName,
               password:values.password,
@@ -57,7 +64,7 @@ function SignUp() {
                   first_name: values.firstName,
                   last_name: values.lastName
                },
-                emailRedirectTo:'http://localhost:5173'
+                emailRedirectTo: redirectUrl
               }
             })
             if (error) {
@@ -76,7 +83,9 @@ function SignUp() {
                   className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
                 });
         }
-        
+        finally{
+          setIsLoading(false)
+        }
       
    
 
@@ -84,6 +93,8 @@ function SignUp() {
   });
   return (
     <>
+             <IconArrowLeft onClick={()=>{navigate(-1);dispatch(changeView(0))}} className='absolute top-6 left-4 text-lightmodemainTextclr dark:text-darkmainTextclr '/>
+
     {/* <Todonav/> */}
     <div className='flex w-full min-h-screen  dark:bg-mainBgclr bg-lightModeMainBg   text-lightmodemainTextclr  dark:text-darkmainTextclr items-center justify-center flex flex-col pt-32 pb-10 px-10'>
       <div className='font-bold  text-xl font-sans  text-lightmodemainTextclr  dark:text-darkmainTextclr'>SignUp here....</div>
@@ -122,11 +133,11 @@ function SignUp() {
         <label className='flex flex-col  text-sm font-mono '>
           Re-enter Password
           <input placeholder="Re-enter the password" type='password' name='repassword' className='dark:bg-mainBgclr bg-lightModeMainBg font-semibold   rounded-md border-[2px] dark:border-markclr p-3 border-lightModelightBg'  onChange={formik.handleChange} value={formik.values.repassword}></input>
-          {formik.touched.repassword && formik.errors.repassword && formik.values.password !== formik.values.repassword?
+          {formik.touched.repassword && formik.errors.repassword && formik.values.password !== formik.values.repassword ?
             (<div style={{color:'#F0E3CA',fontFamily:'sans-serif',fontStyle:'italic',fontSize:'10px'}}>{formik.errors.repassword}</div>):null}
         </label>    
       </fieldset>
-      <div className='flex items-center w-full justify-center'> <button type='submit' className=' dark:hover:border-opacity-60  hover:bg-opacity-60 dark:bg-lightBgclr bg-lightModelightBg font-semibold border-2     p-3 w-full rounded-lg  font-mono font-bold hover:opacity-80 dark:hover:text-[#FFF5E3] dark:border-markclr p-3 border-lightModelightBg focus:border-lightBgclr'>Submit</button></div>
+      <div className='flex items-center w-full justify-center'> <button disabled={isLoading} type='submit' className=' dark:hover:border-opacity-60  hover:bg-opacity-60 dark:bg-lightBgclr bg-lightModelightBg font-semibold border-2     p-3 w-full rounded-lg  font-mono font-bold hover:opacity-80 dark:hover:text-[#FFF5E3] dark:border-markclr p-3 border-lightModelightBg focus:border-lightBgclr'>{isLoading ? 'Signing' :'Sign up'}</button></div>
       {/* <div className='pt-5 flex items-center gap-2 text-mainTextclr text-xs hover:text-[#FFF5E3] '><input type='checkbox' className='bg-lightBgclr size-3'></input><p>I agree to all terms and conditions</p></div> */}
         
       </form>

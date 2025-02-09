@@ -22,7 +22,7 @@ export default {
          darkmainTextclr:'#F0E3CA',
          lightmodemainTextclr:'#543012',
          darksidebarClr:'#37342B',
-         sidebarClr:'rgb(164, 139, 125)',
+         sidebarClr:'rgb(255, 254, 253)',
          darkTextClr:'',
          textClr:'#b2998a'
       },

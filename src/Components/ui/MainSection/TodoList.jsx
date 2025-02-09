@@ -54,28 +54,53 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
     const handleMouseLeave = useCallback(() => {
       setHover(false);
     }, [setHover]);
-
-      const activeTasks = todos?.filter((task) => !task.is_complete);
+      console.log(String(new Date()))
+      const activeTasks = [...todos]?.filter((task) => !task.is_complete).sort((a,b)=>{
+        const dateA = new Date(a.created_at);console.log('hh',dateA); 
+        const dateB = new Date(b.created_at);
+        return dateB - dateA}).map((todo)=>{ 
+          const createdAtDate = new Date(todo.created_at);
+          const today = new Date();
+          
+          // Compare year, month, and day
+          const isToday =
+            createdAtDate.getFullYear() === today.getFullYear() &&
+            createdAtDate.getMonth() === today.getMonth() &&
+            createdAtDate.getDate() === today.getDate();
+          
+          // Return updated todo object
+          return isToday ? { ...todo, created_at: `Today at ${createdAtDate.toLocaleTimeString()}` } : todo;
+        });
       if(todosLoading || userLoading || statusLoading || deleteLoading){
         return <div>Loading...</div>
       }
   return (
-    <div className='flex flex-col py-5  md:px-2 w-full min-h-full items-center gap-6 '>
-              <div className='flex items-center  gap-2 sm:w-full md:w-4/5 justify-center'>
+    <div className='flex flex-col  relative  md:px-2  w-full min-h-full items-center gap-4'>
+              <div className='flex items-center absolute   mx-auto -bottom-4  gap-2 w-full justify-center'>
                 <input 
                 value={todo} 
-                type='text' className='rounded-lg p-2 border-2 dark:border-markclr  border-lightModelightBg w-full dark:bg-lightBgclr  focus:border-lightBgclr' 
+                type='text' className=' rounded-lg p-2 border-[0.5px] dark:border-markclr  border-lightModelightBg w-full dark:bg-lightBgclr  focus:border-lightBgclr' 
                 onChange={(e)=> setTodo(e.target.value)} 
                 ref={refinput}></input>
                  <button disabled={isLoading} className='font-mono font-semibold p-2 rounded-lg dark:bg-lightBgclr bg-lightModelightBg border-2 dark:border-markclr  border-lightModelightBg   hover:bg-mainTextclr hover:text-lightBgclr  dark:hover:text-lightModelightBg  dark:hover:border-opacity-60  hover:bg-opacity-60 focus:border-lightBgclr' 
                  onClick={insertTodo}
                  >{isLoading ? 'Adding' : 'Add'}</button>
               </div>
-              <div className='flex flex-col w-full min-h-2/4  gap-1 gap-2' >
-              { activeTasks?.map((items)=>{
+              <div className='flex flex-col w-full sm:mb-16    overflow-y-scroll
+              min-h-[460px] max-h-[400px]   gap-2' >
+              { activeTasks?.length===0 ? <div className='w-full  flex flex-col justify-start items-start    font-[700]'>
+                  {/* <p className='text-2xl tracking-wide'>Welcome...🤗</p> */}
+                  <p className='absolute sm:text-2xl lg:text-4xl xl:text-5xl  uppercase opacity-40 dark:opacity-80 mt-36 sm:ml-4  md:ml-8 min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
+
+                   </div> 
+                   : activeTasks.sort((a,b)=>a.created_at - b.created_at)?.map((items)=>{
                 return(
-                  <>
-                 <div className='w-full min-h-2/4 bg-opacity-60  md:p-6 sm:p-4 dark:bg-lightBgclr bg-lightModelightBg border-2 dark:border-markclr border-lightModelightBg rounded-md font-mono items-center  flex gap-5' onMouseEnter={()=>{handleMouseEnter(items.id)}} onMouseLeave={()=>{handleMouseLeave(false)}} key={items.id}>
+                  <div key={items.id}>
+                                     { <p className='ml-auto flex-none opacity-50 sm:text-xs md:text-sm text-mainTextclr mb-1'>{items.created_at.includes("Today") ? items.created_at : items.created_at.split('T')[0]}</p>}
+
+                                      {console.log('createdAt',items.created_at,typeof(items.created_at))}
+
+                 <div className='w-full min-h-2/4 bg-opacity-60   md:p-6 sm:p-4 dark:bg-lightBgclr bg-lightModelightBg border-2 dark:border-markclr border-lightModelightBg rounded-md font-mono items-center  flex gap-5' onMouseEnter={()=>{handleMouseEnter(items.id)}} onMouseLeave={()=>{handleMouseLeave(false)}} >
                   <div className='flex-none flex items-center justify-center   w-6 h-6 rounded hover:bg-mainTextclr border-2 dark:border-markclr border-lightmodemainTextclr'
                    onClick={()=>{updatestatus({...items,is_complete:true})}}
                    ><IconCheck className={`${hover === items.id ? 'block' : 'hidden' }`}/></div>
@@ -84,13 +109,12 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
                     onClick={()=>{deleteTodo(items.id)}}
                    />}
                  </div>
-                 {hover!==items.id && <p className='ml-auto flex-none opacity-50 sm:text-xs md:text-sm text-mainTextclr'>{items.created_at.split('T')[0]}</p>}
 
-                 </>
+                 </div>
                 )})}
                 
                  </div>
-                 {activeTasks?.length===0?<div className='w-full h-1/2  flex justify-center items-center  text-mainTextclr  font-mono'>Add your tasks here</div>:null}
+                 
                  {todosError && <div className='w-full h-1/2  flex justify-center items-center  text-mainTextclr  font-mono'>An error occured while fetching</div>}
           </div>
   )

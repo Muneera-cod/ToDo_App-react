@@ -2,6 +2,8 @@
 import { useGetAllTodosQuery } from '../../../redux/reducers/Api/TodoApi'
 import TodoCompleted from './TodoCompleted';
 import TodoList from './TodoList'
+import photoplaceholder from '../../../assets/images/todoApp (2).svg'
+
 function TodoMainSection() {
           
             const { data:todos,isLoading:todosLoading,isError:todosError,refetch} = useGetAllTodosQuery()
@@ -10,23 +12,27 @@ function TodoMainSection() {
   console.log('Fetched Data:', todos);     
     
   return (
-    <div  className=' min-h-screen w-full md:p-2  flex sm:flex-col xl:flex-row  sm:gap-20 xl:gap-8'>
+    <div  className=' min-h-[75vh] w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-8'>
        
-        <div className='  flex sm:p-0 md:p-6 sm:basis-full    dark:md:border-2 dark:border-markclr  ' >
-         <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError}
-       
-         />
+        <div className='  flex px-4 py-6 sm:basis-full rounded-md   ' >
+         <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
        
           
         </div>
-        <div className='  flex  flex-col  md:p-6 sm:basis-full    dark:md:border-2 dark:border-markclr  ' >
-           <p className='text-lg  font-mono font-semibold'>Your Completed tasks....</p>
-           <div className='flex flex-col flex-col-reverse w-full py-4  gap-3  overflow-auto'>
+        <div className=' flex  flex-col  md:py-6 sm:hidden md:block  basis-full  dark:md:border-[0]  dark:border-markclr  ' >
+           {todos.length!==0 && completedTasks.length !== 0 && <p className='text-lg mb-6 mx-6  font-mono font-semibold'>Completed tasks....</p>}
+           <div className='flex flex-col gap-2 flex-col-reverse w-full px-6 max-h-[500px] overflow-y-scroll'>
                  
-                 {completedTasks?.length===0?<div className='w-full h-1/2  flex items-center justify-center mt-32   font-mono'>{todos.length===0?'No tasks added':'No tasks completed'}</div>:null}
+                 {completedTasks?.length===0?
+                 <div className='w-full   h-full flex items-center justify-start  font-mono'>
+                  <div className='w-full  flex justify-center   items-center  text-mainTextclr  font-mono'>
+                    {/* {todos.length===0? */}
+                    <div className=' dark:opacity-10 opacity-50 dark:bg-black  rounded-full h-fit'><img className='relative z-[-1] w-full h-full' src={photoplaceholder}/></div>
+                    {/* // :<p className='mt-32 font-[700]'>No tasks completed</p>} */}
+                    </div></div>:null}
                  {completedTasks?.map((items)=>{
               return(
-                <div className='w-full bg-opacity-20  min-h-16 dark:bg-lightBgclr bg-lightModelightBg flex items-center py-4 px-6 rounded-md dark:border-markclr border-lightModelightBg border-2 font-semibold break-all' key={items.id}>{items.text}</div>
+                <div className='line-through w-full bg-opacity-20  min-h-16 dark:bg-lightBgclr bg-lightModelightBg flex items-center py-4 px-6 rounded-md dark:border-markclr border-lightModelightBg border-2 font-semibold break-all' key={items.id}>{items.text}</div>
               )
             })}
             </div>
