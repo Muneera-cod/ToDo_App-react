@@ -24,7 +24,7 @@ function TodoCompleted() {
       <p onClick={()=>navigate('/')} className="mr-auto font-[700] text-sm opacity-40 hover:opacity-100 text-lightmodemainTextclr dark:text-darkmainTextclr  z-20 ">back</p>
 
     {/* <button className='ml-auto px-4 bg-opacity-40 hover:bg-opacity-80 py-2 mt-2 bg-lightModelightBg dark:bg-lightBgclr text-lightmodemainTextclr dark:text-darkmainTextclr font-semibold rounded-md'>Clear</button> */}
-    <fieldset className='flex flex-col flex-col-reverse w-full  mt-4 py-4 px-4  dark:border-markclr border-lightModelightBg  gap-2 border-2 min-h-[calc(100vh-80px)] rounded-md   overflow-auto'>
+    <fieldset className='flex flex-col flex-col-reverse w-full  mt-4 py-4 px-4  dark:border-markclr border-lightModelightBg  gap-2 border-2 min-h-[calc(100vh-100px)] max-h-[calc(100vh-60px)] rounded-md   overflow-auto'>
     <legend className='text-xl my-8 font-mono font-semibold'>Completed tasks</legend>
 
                  {completedTasks?.length===0?<div className='w-full min-h-full  flex items-center justify-center   sm:text-2xl lg:text-3xl xl:text-4xl  uppercase opacity-40 dark:opacity-80 font-[700]  my-auto dark:text-darksidebarClr text-lightModelightBg '>{todos.length===0?'No tasks added':'No tasks completed'}</div>:null}

@@ -1,7 +1,7 @@
 import React from 'react'
 import profilepic from '../../assets/user_profile.jpg'
 import { toggleHide } from '../../redux/reducers/Sidebar/SidebarSlice'
-import {IconChevronRight, IconChevronLeft,IconMoonFilled,IconSun } from '@tabler/icons-react'
+import {IconChevronRight, IconChevronLeft,IconMoonFilled,IconSun, IconMenu2 } from '@tabler/icons-react'
 import { toggleMode } from '../../redux/reducers/Theme/ThemeSlice'
 import { useSelector,useDispatch } from 'react-redux'
 import { useGetUserQuery } from '../../redux/reducers/Api/authApi'
@@ -22,8 +22,8 @@ const { data:user , isError:userError} = useGetUserQuery();
                 <p className='text-xs '>Your todo list is here</p>
             </div></>
         </div> */}
-            {sidebarHide &&< IconChevronLeft onClick={()=>dispatch(toggleHide())} className='cursor-pointer sm:block lg:hidden '/>}
-            {!sidebarHide && <IconChevronRight onClick={()=>dispatch(toggleHide())} className='cursor-pointer sm:block lg:hidden '/>}
+            {sidebarHide &&< IconMenu2 onClick={()=>dispatch(toggleHide())} className='sm:-ml-2 md:-ml-4 cursor-pointer sm:block lg:hidden '/>}
+            {!sidebarHide && <IconMenu2 onClick={()=>dispatch(toggleHide())} className='sm:-ml-2 md:-ml-4  cursor-pointer sm:block lg:hidden '/>}
 
         { isDarkmode ?<IconMoonFilled className=' hover:text- text-lightmodemainTextclr dark:text-darkmainTextclr mx-2' onClick={()=>dispatch(toggleMode())}/>:<IconSun className=' hover:text- text-lightmodemainTextclr dark:text-darkmainTextclr mx-2' onClick={()=>dispatch(toggleMode())}/>}
 

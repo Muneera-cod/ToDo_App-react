@@ -12,14 +12,14 @@ function TodoMainSection() {
   console.log('Fetched Data:', todos);     
     
   return (
-    <div  className=' min-h-[75vh] w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-8'>
+    <div  className=' h-[79vh] max-h-[80vh] w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-6'>
        
-        <div className='  flex px-4 py-6 sm:basis-full rounded-md   ' >
+        <div className='  flex px-4 py-6  sm:basis-full rounded-md   ' >
          <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
        
           
         </div>
-        <div className=' flex  flex-col  md:py-6 sm:hidden md:block  basis-full  dark:md:border-[0]  dark:border-markclr  ' >
+        <div className='flex h-[78vh]  flex-col  md:py-6 sm:hidden md:block  basis-full  dark:md:border-[0]  dark:border-markclr  ' >
            {todos.length!==0 && completedTasks.length !== 0 && <p className='text-lg mb-6 mx-6  font-mono font-semibold'>Completed tasks....</p>}
            <div className='flex flex-col gap-2 flex-col-reverse w-full px-6 max-h-[500px] overflow-y-scroll'>
                  

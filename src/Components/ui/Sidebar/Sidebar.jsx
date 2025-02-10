@@ -36,20 +36,21 @@ function Sidebar() {
    console.log(sidebarHide)
   return (
     <aside>
-            {sidebarHide &&< IconChevronLeft onClick={()=>dispatch(toggleHide())} className='cursor-pointer sm:hidden lg:block absolute z-30 mt-8 ml-6 mb-4'/>}
-            {!sidebarHide && <IconChevronRight onClick={()=>dispatch(toggleHide())} className='cursor-pointer sm:hidden lg:block w-[285px] relative z-30 mt-4 mb-6 flex pl-[250px]'/>}
+            {sidebarHide &&< IconChevronRight onClick={()=>dispatch(toggleHide())} className='text-lightmodemainTextclr   dark:text-darkmainTextclr cursor-pointer sm:hidden lg:block absolute z-30 mt-8 ml-6 mb-4'/>}
+            {!sidebarHide && <IconChevronLeft onClick={()=>dispatch(toggleHide())} className='text-lightmodemainTextclr   dark:text-darkmainTextclr cursor-pointer sm:hidden lg:block w-[285px] relative z-30 mt-4 mb-6 flex pl-[250px]'/>}
 
 
     {!sidebarHide && <div   className='transition delay-150  duration-200 ease-in-out   min-h-screen  text-lightmodemainTextclr   dark:text-darkmainTextclr  lg:top-0 border-r-[0.3px] dark:border-[0px] border-opacity-20 shadow-md  border-sidebarClr  w-fit fixed sm:z-20 bg-sidebarClr dark:bg-darksidebarClr w-fit flex flex-col  '>
-        <div className=' flex flex-col md:min-h-screen   sm:pt-[80px] lg:pt-0'>
+        <div className=' flex flex-col h-screen   sm:pt-[80px] lg:pt-0'>
         
          <div className='px-4 pt-12 pb-24 gap-4 sm:hidden lg:flex'>
-             {user?.user_metadata.photoURL ? <img src={profile} className='rounded-full md:size-20 sm:size-8'></img> : <div className='flex  items-center uppercase justify-center text-4xl  rounded-full bg-amber-400 md:size-20 sm:size-8'><p className='font-[700]'>{user?.user_metadata.email.split('')[0]}</p></div>}
+             {user?.user_metadata.photoURL ? <div className='border-2'><img src={profile} className=' rounded-full md:size-20 sm:size-8'></img></div> : <div className='border-2 border-opacity-20 border-lightmodemainTextclr dark:border-darkmainTextclr flex  items-center uppercase justify-center text-4xl  rounded-full bg-amber-400 md:size-20 sm:size-8'><p className='font-[700]'>{user?.user_metadata.email.split('')[0]}</p></div>}
             
              <div className='flex flex-col justify-end pb-2 '>
                 <p className='md:text-xl sm:text-sm font-bold text-mainTextclr font-mono max-w-[150px]'>Hi, {user?.user_metadata.first_name || 'Username'}</p>
                 <p className='text-xs text-mainTextclr'>Your todo list is here</p>
             </div>
+            <hr  className='absolute opacity-20  h-[2px] bg-lightmodemainTextclr dark:bg-darkmainTextclr  top-40 left-3  right-[calc(100%-276px)]'/>
           </div>
           {sidebardata.map((items ,index)=>{
             return(
