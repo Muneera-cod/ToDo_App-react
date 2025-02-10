@@ -40,7 +40,7 @@ function Sidebar() {
             {!sidebarHide && <IconChevronLeft onClick={()=>dispatch(toggleHide())} className='text-lightmodemainTextclr   dark:text-darkmainTextclr cursor-pointer sm:hidden lg:block w-[285px] relative z-30 mt-4  flex pl-[250px]'/>}
 
 
-    {!sidebarHide && <div   className='transition delay-150 h-[calc(100vh-25px)]  duration-200 ease-in-out     text-lightmodemainTextclr   dark:text-darkmainTextclr  border-r-[0.3px] dark:border-[0px] border-opacity-20 shadow-md  border-sidebarClr  w-fit   bg-sidebarClr dark:bg-darksidebarClr  flex flex-col  sm:pt-28 lg:pt-0'>
+    {!sidebarHide && <div   className='transition delay-150 h-[calc(100vh-25px)]  duration-200 ease-in-out     text-lightmodemainTextclr   dark:text-darkmainTextclr  border-r-[0.3px] dark:border-[0px] border-opacity-20  border-sidebarClr  w-fit   bg-sidebarClr dark:bg-darksidebarClr  flex flex-col  sm:pt-28 lg:pt-0'>
         
          <div className='px-4  pb-10 gap-4 sm:hidden lg:flex'>
              {user?.user_metadata.photoURL ? <div className='border-2'><img src={profile} className=' rounded-full md:size-20 sm:size-8'></img></div> : <div className='border-2 border-opacity-20 border-lightmodemainTextclr dark:border-darkmainTextclr flex  items-center uppercase justify-center text-4xl  rounded-full bg-amber-400 md:size-20 sm:size-8'><p className='font-[700]'>{user?.user_metadata.email.split('')[0]}</p></div>}
