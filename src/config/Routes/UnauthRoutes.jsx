@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ForgetPwdForm from "../../Components/ui/ForgetPwdForm";
 import LoadingPage from "../../Components/Pages/LoadingPage";
 import ResetPasswordFrom from "../../Components/ui/ResetPasswordFrom";
+import ErrorNotFoundPage from "../../Components/Pages/ErrorNotFoundPage";
 const LandinPage = lazy(()=> import("../../Components/Pages/LandinPage"))
 const Login = lazy(() => import("../../Components/Pages/Login"));
 const SignUp = lazy(() => import("../../Components/Pages/SignUp"));
