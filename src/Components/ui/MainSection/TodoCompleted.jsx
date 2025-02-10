@@ -20,7 +20,7 @@ function TodoCompleted() {
       return <ErrorFetch/>
     }
   return ( 
-  <section className="w-full h-screen flex flex-col justify-between bg-red-200">
+  <section className="w-full h-[calc(100vh-4vh)] max-h-[calc(100vh-4vh)]  flex flex-col justify-between">
       <p onClick={()=>navigate('/')} className="mr-auto font-[700] text-sm opacity-40 hover:opacity-100 text-lightmodemainTextclr dark:text-darkmainTextclr  z-20 ">back</p>
 
     {/* <button className='ml-auto px-4 bg-opacity-40 hover:bg-opacity-80 py-2 mt-2 bg-lightModelightBg dark:bg-lightBgclr text-lightmodemainTextclr dark:text-darkmainTextclr font-semibold rounded-md'>Clear</button> */}

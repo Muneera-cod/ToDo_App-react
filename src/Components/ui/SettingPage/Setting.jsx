@@ -81,7 +81,7 @@ catch(error) {
 },[updatePassword,updateUserProfile])
   return (
     <>
-      <p onClick={() => navigate('/')} className="ml-auto font-[700] text-sm opacity-40 hover:opacity-100 text-lightmodemainTextclr dark:text-darkmainTextclr z-20">back</p>
+      <p onClick={() => navigate('/')} className="mr-auto font-[700] text-sm opacity-40 hover:opacity-100 text-lightmodemainTextclr dark:text-darkmainTextclr z-20">back</p>
 
       <div className="flex flex-col w-full sm:px-2 md:px-12 py-10 max-w-full overflow-hidden">
         <div className='flex sm:flex-col md:flex-row items-center gap-8 px-12 pb-12 pt-6 sm:justify-center md:justify-between sm:w-full md:w-fit'>
