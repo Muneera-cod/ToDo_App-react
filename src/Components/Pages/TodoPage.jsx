@@ -61,7 +61,7 @@ if(isError){
             {location.pathname !== '/reset-password' && <Sidebar />}
             {(currView === 0 || location.pathname === '/') && <Todonav />}
 
-    <main className='min-h-screen dark:bg-mainBgclr bg-lightModeMainBg  w-full text-lightmodemainTextclr dark:text-darkmainTextclr  flex sm:flex-col-reverse lg:flex-row '>
+    <main className='min-h-[calc(100vh-85px)] dark:bg-mainBgclr bg-lightModeMainBg  w-full text-lightmodemainTextclr dark:text-darkmainTextclr  flex sm:flex-col-reverse lg:flex-row '>
     
         <section className='flex flex-col w-full min-h-full'>
           

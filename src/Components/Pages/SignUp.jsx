@@ -7,7 +7,6 @@ import { supabase} from '../../services/supabaseClient';
 import Todonav from '../ui/Todonav';
 import { IconArrowLeft } from '@tabler/icons-react';
 import { useDispatch } from 'react-redux';
-import { rule } from 'postcss';
 function SignUp() {
     const redirectUrl = `${window.location.origin}`
   const [ isLoading,setIsLoading] = useState(false)
