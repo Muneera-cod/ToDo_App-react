@@ -75,8 +75,8 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
         return <div>Loading...</div>
       }
   return (
-    <div className='flex flex-col  relative  md:px-2  w-full min-h-full items-center gap-4'>
-              <div className='flex items-center absolute   mx-auto -bottom-4  gap-2 w-full justify-center'>
+    <div className='flex flex-col relative  md:px-2  w-full min-h-full items-center gap-4'>
+              <div className='flex items-center absolute   mx-auto bottom-0  gap-2 w-full justify-center'>
                 <input 
                 value={todo} 
                 type='text' className=' rounded-lg p-2 border-[0.5px] dark:border-markclr  border-lightModelightBg w-full dark:bg-lightBgclr  focus:border-lightBgclr' 
@@ -90,7 +90,7 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
               min-h-[460px] max-h-[400px]   gap-2' >
               { activeTasks?.length===0 ? <div className='w-full  flex flex-col justify-start items-start    font-[700]'>
                   {/* <p className='text-2xl tracking-wide'>Welcome...🤗</p> */}
-                  <p className='absolute sm:text-2xl lg:text-4xl xl:text-5xl  uppercase opacity-40 dark:opacity-80 mt-36 sm:ml-4  md:ml-8 min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
+                  <p className='absolute  sm:text-2xl lg:text-3xl xl:text-5xl  uppercase opacity-40 dark:opacity-80 mt-36 sm:ml-6  md:ml-2 xl:ml-8 min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
 
                    </div> 
                    : activeTasks.sort((a,b)=>a.created_at - b.created_at)?.map((items)=>{

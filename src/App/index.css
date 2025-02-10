@@ -4,6 +4,7 @@
 
 *{
     box-sizing: border-box;
+    margin: 0;
     @apply transition-colors duration-100 transition-all;
 
 }

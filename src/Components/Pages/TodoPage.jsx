@@ -58,15 +58,14 @@ if(isError){
     
   return (
     <>
-            {location.pathname !== '/reset-password' && <Sidebar />}
             {(currView === 0 || location.pathname === '/') && <Todonav />}
+            {location.pathname !== '/reset-password' && <Sidebar />}
 
-    <main className='min-h-[calc(100vh-85px)] dark:bg-mainBgclr bg-lightModeMainBg  w-full text-lightmodemainTextclr dark:text-darkmainTextclr  flex sm:flex-col-reverse lg:flex-row '>
+
     
-        <section className='flex flex-col w-full min-h-full'>
           
          
-          <div className={`flex flex-col   dark:bg-mainBgclr bg-lightModeMainBg  absolute  items-center justify-center ${sidebarHide ? 'sm:left-[0px] lg:left-[40px]' : 'sm:left-[40px] lg:left-[285px]'} right-0 sm:py-2   lg:py-4 sm:px-2   lg:px-6  ${(currView === 0 || location.pathname === '/') ? 'top-20' : 'top-0'}`}>
+          <main className={`flex flex-col overflow-hidden dark:bg-mainBgclr bg-lightModeMainBg  absolute  items-center justify-center ${sidebarHide ? 'sm:left-[0px] lg:left-[0px] sm:w-[calc(100%)] lg:w-[calc(100%-0px)]' : 'sm:left-[40px] lg:left-[285px]'} right-0 sm:py-2   lg:py-4 sm:px-2   lg:px-6  ${(currView === 0 || location.pathname === '/') ? 'top-20' : 'top-0'}`}>
           {(currView === 0 || location.pathname === '/') && <p className='w-full pt-4 pl-6 sm:text-lg lg:text-xl tracking-wide   font-bold flex gap-2 items-center justify-start '>{currDate}</p>}
        
               { (currView === 0 || location.pathname === '/') && <TodoMainSection />}
@@ -74,11 +73,9 @@ if(isError){
               { (currView === 1 ) && <Outlet/>}
                
               
-          </div>
-        </section>
+          </main>
       
         
-    </main>  
     </>
     
   )

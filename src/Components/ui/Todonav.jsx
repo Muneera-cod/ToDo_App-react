@@ -14,7 +14,7 @@ const { data:user , isError:userError} = useGetUserQuery();
 
 
   return (
-    <header className='flex text-lightmodemainTextclr w-full dark:text-darkmainTextclr top-0  fixed h-20 dark:bg-lightBgclr bg-lightModelightBg sm:z-20 lg:z-10 sm:justify-between lg:justify-end sm:px-4 md:px-6 pt-6 pb-4 items-center '>
+    <header className='flex text-lightmodemainTextclr w-full  dark:text-darkmainTextclr top-0  fixed h-20 dark:bg-lightBgclr bg-lightModelightBg sm:z-30 lg:z-10 sm:justify-between lg:justify-end sm:px-4 md:px-6 pt-6 pb-4 items-center '>
         {/* <div className={`gap-4 sm:flex lg:hidden ${sidebarHide ? 'ml-6' : 'ml-0'}`}>
           <>             {user?.user_metadata.photoURL ? <img src={profile} className='rounded-full size-8'></img> : <div className='flex  items-center uppercase justify-center text-md  rounded-full bg-amber-400 size-8'><p className='font-[700]'>{user?.user_metadata.email.split('')[0]}</p></div>}
             <div className='flex flex-col justify-end pb-2 '>

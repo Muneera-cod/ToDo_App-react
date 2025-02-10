@@ -12,19 +12,17 @@ function TodoMainSection() {
   console.log('Fetched Data:', todos);     
     
   return (
-    <div  className=' h-[79vh] max-h-[80vh] w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-6'>
+    <section  className='h-[calc(78.5vh)]  w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-6'>
        
-        <div className='  flex px-4 py-6  sm:basis-full rounded-md   ' >
          <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
        
           
-        </div>
-        <div className='flex h-[78vh]  flex-col  md:py-6 sm:hidden md:block  basis-full  dark:md:border-[0]  dark:border-markclr  ' >
+        <div className='flex   flex-col md:py-6 sm:hidden md:block   basis-full  dark:md:border-[0]  dark:border-markclr  ' >
            {todos.length!==0 && completedTasks.length !== 0 && <p className='text-lg mb-6 mx-6  font-mono font-semibold'>Completed tasks....</p>}
            <div className='flex flex-col gap-2 flex-col-reverse w-full px-6 max-h-[500px] overflow-y-scroll'>
                  
                  {completedTasks?.length===0?
-                 <div className='w-full   h-full flex items-center justify-start  font-mono'>
+                 <div className='w-full   h-full flex items-center justify-start  overflow-hidden font-mono'>
                   <div className='w-full  flex justify-center   items-center  text-mainTextclr  font-mono'>
                     {/* {todos.length===0? */}
                     <div className=' dark:opacity-10 opacity-50 dark:bg-black  rounded-full h-fit'><img className='relative z-[-1] w-full h-full' src={photoplaceholder}/></div>
@@ -39,7 +37,7 @@ function TodoMainSection() {
         </div>
 
        
-    </div>
+    </section>
   )
 }
 
