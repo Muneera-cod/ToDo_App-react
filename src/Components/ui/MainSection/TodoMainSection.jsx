@@ -24,7 +24,7 @@ function TodoMainSection() {
     }, []);
     
   return (
-    <section  className='h-[100%]  pt-20  w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-6'>
+    <section  className='h-[100%]  pt-20  w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-6 text-lightmodemainTextclr dark:text-darkmainTextclr'>
        <p className='w-full pt-4 pl-6 sm:text-lg lg:text-xl tracking-wide   font-bold flex gap-2 items-center justify-start '>{currDate}</p>
          <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
        
