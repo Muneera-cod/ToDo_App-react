@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-
+import ErrorNotFoundPage from '../../Components/Pages/ErrorNotFoundPage'
 import TodoCompleted from "../../Components/ui/MainSection/TodoCompleted";
 import LoadingPage from "../../Components/Pages/LoadingPage";
 import ResetPasswordFrom from "../../Components/ui/ResetPasswordFrom";
@@ -34,5 +34,9 @@ export const mainrouter=createBrowserRouter([
     {
         path:'/reset-password',
         element:<ResetPasswordFrom/>
+    },
+    {
+        path:'*',
+        element:<ErrorNotFoundPage/>
     }
 ])

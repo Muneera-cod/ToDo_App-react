@@ -34,4 +34,9 @@ export const unauthRouter=createBrowserRouter([
     element:<Suspense  fallback={<LoadingPage/>}
         ><SignUp/></Suspense>
 },
+,
+    {
+        path:'*',
+        element:<ErrorNotFoundPage/>
+    }
 ])
