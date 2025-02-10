@@ -16,20 +16,9 @@ function TodoPage() {
   const location = useLocation()
   const dispatch = useDispatch()
   const currView = useSelector((state) => state.view.currView)
-  const [currDate,setCurrDate]=useState('')
   const sidebarHide = useSelector((state)=>state.sidebar)
 
-  useEffect(() => {
-    const today = new Date();
-    
-    const formattedDate = today.toLocaleDateString('en-US', {
-      day: '2-digit',        // '02'
-      weekday: 'long',       // 'Tuesday'
-      year: 'numeric'        // '2024'
-    });
   
-    setCurrDate(formattedDate);
-  }, []);
 
   
   const { data:todos, isLoading, isError, error,refetch } = useGetAllTodosQuery();
@@ -65,8 +54,8 @@ if(isError){
     
           
          
-          <main className={`flex flex-col overflow-hidden dark:bg-mainBgclr bg-lightModeMainBg  absolute  items-center justify-center ${(sidebarHide || location.pathname !== '/') ? 'sm:left-[0px] lg:left-[0px] sm:w-[calc(100%)] lg:w-[calc(100%-0px)]' : 'sm:left-[40px] lg:left-[285px]'} right-0 sm:py-2   lg:py-4 sm:px-2   lg:px-6  ${(currView === 0 || location.pathname === '/') ? 'top-20' : 'top-0'}`}>
-          {(currView === 0 || location.pathname === '/') && <p className='w-full pt-4 pl-6 sm:text-lg lg:text-xl tracking-wide   font-bold flex gap-2 items-center justify-start '>{currDate}</p>}
+          <main className={`flex flex-col h-full overflow-hidden dark:bg-mainBgclr bg-lightModeMainBg  absolute  items-center justify-between ${(sidebarHide || location.pathname !== '/') ? 'sm:left-[0px] lg:left-[0px] w-[100%]' : 'sm:left-[40px] lg:left-[285px]'} right-0 sm:py-2   lg:py-4 sm:px-2   lg:px-6  top-0`}>
+          
        
               { (currView === 0 || location.pathname === '/') && <TodoMainSection />}
               {/* <Todofooter/> */}

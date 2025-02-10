@@ -75,7 +75,7 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
         return <div>Loading...</div>
       }
   return (
-    <div className='flex flex-col relative  md:px-2  w-full min-h-full items-center gap-4'>
+    <div className='h-full flex flex-col relative  md:px-2  w-full items-center gap-4'>
               <div className='flex items-center absolute   mx-auto bottom-0  gap-2 w-full justify-center'>
                 <input 
                 value={todo} 
@@ -87,10 +87,10 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
                  >{isLoading ? 'Adding' : 'Add'}</button>
               </div>
               <div className='flex flex-col w-full sm:mb-16    overflow-y-scroll
-              min-h-[460px] max-h-[400px]   gap-2' >
+                gap-2' >
               { activeTasks?.length===0 ? <div className='w-full  flex flex-col justify-start items-start    font-[700]'>
                   {/* <p className='text-2xl tracking-wide'>Welcome...🤗</p> */}
-                  <p className='absolute  sm:text-2xl lg:text-3xl xl:text-5xl  uppercase opacity-40 dark:opacity-80 mt-36 sm:ml-6  md:ml-2 xl:ml-8 min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
+                  <p className='absolute top-[50%] left-[50%]  -translate-y-1/2 -translate-x-1/2  sm:text-3xl lg:text-3xl xl:text-5xl  uppercase opacity-40 dark:opacity-80  min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
 
                    </div> 
                    : activeTasks.sort((a,b)=>a.created_at - b.created_at)?.map((items)=>{
