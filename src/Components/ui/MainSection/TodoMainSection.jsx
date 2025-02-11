@@ -24,22 +24,21 @@ function TodoMainSection() {
     }, []);
     
   return (
-    <section  className='h-[100%]  pt-20  w-full md:p-2  flex sm:flex-col md:flex-row  xl:gap-6 text-lightmodemainTextclr dark:text-darkmainTextclr'>
+    <section  className='h-[100%]  sm:pt-20 md:pt-24   w-full   flex sm:flex-col lg:flex-row   xl:gap-6 text-lightmodemainTextclr dark:text-darkmainTextclr'>
+       <div className='flex flex-col sm:basis-full lg:basis-1/2 h-full '>
        <p className='w-full pt-4 pl-6 sm:text-lg lg:text-xl tracking-wide   font-bold flex gap-2 items-center justify-start '>{currDate}</p>
-         <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
+       <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
+       </div>
        
           
-        <div className='flex h-full  flex-col md:py-6 sm:hidden md:block   basis-full  dark:md:border-[0]  dark:border-markclr  ' >
+        <div className='flex h-full basis-1/2   flex-col md:py-6 sm:hidden lg:block    dark:md:border-[0]  dark:border-markclr  ' >
            {todos.length!==0 && completedTasks.length !== 0 && <p className='text-lg mb-6 mx-6  font-mono font-semibold'>Completed tasks....</p>}
-           <div className='flex flex-col gap-2 flex-col-reverse w-full px-6 max-h-[500px] overflow-y-scroll'>
+           <div className='flex flex-col gap-2 flex-col-reverse w-full h-full px-6 max-h-[500px] overflow-y-scroll'>
                  
                  {completedTasks?.length===0?
-                 <div className='w-full   h-full flex items-center justify-start  overflow-hidden font-mono'>
-                  <div className='w-full  flex justify-center   items-center  text-mainTextclr  font-mono'>
-                    {/* {todos.length===0? */}
+                  <div className='w-full h-full   flex justify-center   items-center  text-mainTextclr  font-mono'>
                     <div className=' dark:opacity-10 opacity-50 dark:bg-black  rounded-full h-fit'><img className='relative z-[-1] w-full h-full' src={photoplaceholder}/></div>
-                    {/* // :<p className='mt-32 font-[700]'>No tasks completed</p>} */}
-                    </div></div>:null}
+                    </div>:null}
                  {completedTasks?.map((items)=>{
               return(
                 <div className='line-through w-full bg-opacity-20  min-h-16 dark:bg-lightBgclr bg-lightModelightBg flex items-center py-4 px-6 rounded-md dark:border-markclr border-lightModelightBg border-2 font-semibold break-all' key={items.id}>{items.text}</div>

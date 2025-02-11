@@ -75,8 +75,8 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
         return <div>Loading...</div>
       }
   return (
-    <div className='h-full flex flex-col relative  md:px-2  w-full items-center gap-4'>
-              <div className='flex items-center absolute   mx-auto bottom-0  gap-2 w-full justify-center'>
+    <div className='h-full relative flex flex-col relative  md:px-2  w-full items-center gap-4'>
+              <div className='absolute bottom-1   flex items-center    mx-auto bottom-0  gap-2 w-full justify-center'>
                 <input 
                 value={todo} 
                 type='text' className=' rounded-lg p-2 border-[0.5px] dark:border-markclr  border-lightModelightBg w-full dark:bg-lightBgclr  focus:border-lightBgclr' 
@@ -88,12 +88,9 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
               </div>
               <div className='flex flex-col w-full sm:mb-16    overflow-y-scroll
                 gap-2' >
-              { activeTasks?.length===0 ? <div className='w-full  flex flex-col justify-start items-start    font-[700]'>
-                  {/* <p className='text-2xl tracking-wide'>Welcome...🤗</p> */}
-                  <p className='absolute top-[50%] left-[50%]  -translate-y-1/2 -translate-x-1/2  sm:text-3xl lg:text-3xl xl:text-5xl  uppercase opacity-40 dark:opacity-80  min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
-
-                   </div> 
-                   : activeTasks.sort((a,b)=>a.created_at - b.created_at)?.map((items)=>{
+              { activeTasks?.length===0 ? 
+                  <p className='absolute top-[50%] left-[50%] font-[900] -translate-y-1/2 ml-4  -translate-x-1/2  sm:text-3xl lg:text-3xl xl:text-5xl  uppercase opacity-40 dark:opacity-80  min-w-full dark:text-darksidebarClr text-lightModelightBg'>Add your To-Dos...</p>
+                    : activeTasks.sort((a,b)=>a.created_at - b.created_at)?.map((items)=>{
                 return(
                   <div key={items.id}>
                                      { <p className='ml-auto flex-none opacity-50 sm:text-xs md:text-sm text-mainTextclr mb-1'>{items.created_at.includes("Today") ? items.created_at : items.created_at.split('T')[0]}</p>}
