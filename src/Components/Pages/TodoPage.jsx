@@ -54,7 +54,7 @@ if(isError){
     
           
          
-          <main className={`flex flex-col h-full overflow-hidden text-lightmodemainTextclr dark:text-darkmainTextclr dark:bg-mainBgclr bg-lightModeMainBg  absolute  items-center justify-between ${(sidebarHide || location.pathname !== '/') ? 'sm:left-[0px] lg:left-[0px] w-[100%]' : 'sm:left-[40px] lg:left-[285px]'} right-0 sm:py-2   lg:py-4 sm:px-2   lg:px-6  top-0`}>
+          <main className={`flex flex-col h-full overflow-x-hidden text-lightmodemainTextclr dark:text-darkmainTextclr dark:bg-mainBgclr bg-lightModeMainBg  absolute  items-center justify-between ${(sidebarHide || location.pathname !== '/') ? 'sm:left-[0px] lg:left-[0px] w-[100%]' : 'sm:left-[40px] lg:left-[285px]'} right-0 sm:py-2   lg:py-4 sm:px-2   lg:px-6  top-0`}>
           
        
               { (currView === 0 || location.pathname === '/') && <TodoMainSection />}

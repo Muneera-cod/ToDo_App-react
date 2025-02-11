@@ -83,7 +83,7 @@ catch(error) {
     <>
       <p onClick={() => navigate('/')} className="mr-auto font-[700] text-sm opacity-40 hover:opacity-100 text-lightmodemainTextclr dark:text-darkmainTextclr z-20">back</p>
 
-      <div className="flex flex-col w-full sm:px-2 md:px-12 py-10 max-w-full overflow-hidden">
+      <div className="flex flex-col w-full  sm:px-2 md:px-6 py-10 ">
         <div className='flex sm:flex-col md:flex-row items-center gap-8 px-12 pb-12 pt-6 sm:justify-center md:justify-between sm:w-full md:w-fit'>
           {user?.user_metadata.photoURL ? (
             <img src={user.user_metadata.photoURL || placeholderimg} className='rounded-full max-w-[150px] max-h-[150px] sm:min-w-[100px] md:min-w-[120px] sm:min-h-[100px] md:min-h-[120px] relative top-20' />
