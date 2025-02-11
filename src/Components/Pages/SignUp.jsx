@@ -68,11 +68,11 @@ function SignUp() {
             })
             if (error) {
                 toast.error(error.message,{
-                  className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+                  className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold hover:bg-mainTextclr   dark:border-markclr p-3 border-lightModelightBg'
                 });
               } else {
                 toast.success('Check your email for the login link!',{
-                  className:'bg-lightBgclr text-mainTextclr  font-mono font-semibold border-2 border-markclr'
+                  className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold hover:bg-mainTextclr   dark:border-markclr p-3 border-lightModelightBg'
                 });
               }
         }
