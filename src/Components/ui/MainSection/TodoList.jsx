@@ -30,23 +30,29 @@ function TodoList({ todos,todosLoading,refetch ,todosError}) {
     }
    useEffect(()=>{
     if(isSuccess){
-      toast.success('Task added successfully')
+      toast.success('Task added successfully',{className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
+      })
       refetch()
     }},[isSuccess])
-    useEffect(()=>{if(isError) toast.error('Error adding task')},[isError])
+    useEffect(()=>{if(isError) toast.error('Error adding task',{className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
+    })},[isError])
   useEffect(()=>{
     if(updated){
-      toast.success('Task completed successfully')
+      toast.success('Task completed successfully',{className:'min-w-fit bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
+      })
       refetch()
     }},[updated])
-    useEffect(()=>{if(isError) toast.error('Error updating task status')},[isError])
+    useEffect(()=>{if(isError) toast.error('Error updating task status',{className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
+    })},[isError])
     useEffect(()=>{
       if(deleted){
-        toast.success('Task deleted successfully')
+        toast.success('Task deleted successfully',{className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
+        })
         refetch()
       } },[deleted])
     useEffect(()=>{
-        if(isError) toast.error('Error deleting task') },[isError])
+        if(isError) toast.error('Error deleting task',{className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
+        }) },[isError])
     console.log('todo',todo)
     const handleMouseEnter = useCallback((id) => {
       setHover(id);

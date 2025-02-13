@@ -73,14 +73,14 @@ let { data:{session}, error } = await supabase.auth.signInWithPassword({
              navigate('/')
               console.log(';d;l',session.user.id)
               toast.success('Login successful',{
-                className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold hover:bg-mainTextclr   dark:border-markclr p-3 border-lightModelightBg'
+                className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
               });
             
       } 
       catch (error) {
          console.log(error.message)
             toast.error('Login failed.',{
-              className:'font-[700]  dark:bg-lightBgclr bg-lightModelightBg   border-2  p-3 w-full rounded-lg  font-mono font-bold  dark:border-markclr p-3 border-lightModelightBg '
+              className:'bg-sidebarClr dark:bg-darksidebarClr text-lightmodemainTextclr dark:text-darkmainTextclr font-mono font-semibold border-2  dark:border-markclr p-3 border-lightModelightBg'
             });
            
       } 

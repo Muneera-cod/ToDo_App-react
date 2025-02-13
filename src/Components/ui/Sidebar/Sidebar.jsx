@@ -50,7 +50,7 @@ function Sidebar() {
                 <p className='text-xs text-mainTextclr'>Your todo list is here</p>
             </div>
           </div>
-          <hr  className='sm:hidden md:block mb-10 mx-auto z-30 opacity-20 w-[95%] relative h-[2px] bottom-0  h-[2px] bg-lightmodemainTextclr dark:bg-darkmainTextclr  '/>
+          <hr  className='sm:hidden lg:block mb-10 mx-auto z-30 opacity-20 w-[95%] relative h-[2px] bottom-0  h-[2px] bg-lightmodemainTextclr dark:bg-darkmainTextclr  '/>
 
           {sidebardata.map((items ,index)=>{
             return(

@@ -1,4 +1,3 @@
-
 import { useGetAllTodosQuery } from '../../../redux/reducers/Api/TodoApi'
 import TodoCompleted from './TodoCompleted';
 import TodoList from './TodoList'
@@ -26,7 +25,7 @@ function TodoMainSection() {
   return (
     <section  className='h-[100%]  sm:pt-20 md:pt-24   w-full   flex sm:flex-col lg:flex-row   xl:gap-6 text-lightmodemainTextclr dark:text-darkmainTextclr'>
        <div className='flex flex-col sm:basis-full lg:basis-1/2 h-full '>
-       <p className='w-full pt-4 pl-6 sm:text-lg lg:text-xl tracking-wide   font-bold flex gap-2 items-center justify-start '>{currDate}</p>
+       <p className='w-full pt-4 pl-2 sm:text-lg lg:text-xl tracking-wide   font-bold flex gap-2 items-center justify-start mb-3'>{currDate}</p>
        <TodoList  todos={todos} refetch={refetch} todosLoading={todosLoading} todosError={todosError} />
        </div>
        
